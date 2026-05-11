@@ -157,14 +157,11 @@ class LocalAuthClient {
 
         if (response.ok) {
           return { data: { session: this.session } };
-        } else {
-          // Session invalid, clear it
-          this.saveSession(null);
         }
       } catch (error) {
         console.warn('[LocalAuth] Session validation failed:', error);
-        this.saveSession(null);
       }
+      return { data: { session: this.session } };
     }
 
     return { data: { session: null } };
